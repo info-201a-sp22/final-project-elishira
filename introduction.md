@@ -50,7 +50,7 @@ The national survey was conducted by the CDC. The local surveys were conducted b
 
 > Why was the data collected?  
 
-This data was collected to monotor health behaviors in high schoolers (9th to 12th grade) and monitor the main causes of death, disability and social problemss amoung Americans in this age group.
+This data was collected to monitor health behaviors in high schoolers (9th to 12th grade) and monitor the main causes of death, disability and social problems among Americans in this age group.
 
 > How many observations (rows) are in your data?  
 
