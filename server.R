@@ -1,7 +1,7 @@
 youth_df <- read.csv("YSSBR DATA Small NA.csv")
 library(tidyverse)
 library(dplyr)
-
+library("shiny")
 server <- function(input, output) {
 
   output$age_in_YRBSS_data <- renderPlotly({
@@ -55,5 +55,16 @@ server <- function(input, output) {
        4 = All other Races") + 
       ggtitle("Proportion of Teens attempting Suicide by Race")
     return(proportion_race_suicide_viz)
+  })
+  output$question_viz <- renderPlotly({
+    filtered_df <- question_df %>% 
+      filter(Question %in% input$user_selection)
+    
+    question_plot <- ggplot(data = filtered_df) + 
+      geom_line(aes(x = Year, 
+                    y = Proportion, 
+                    color = Question))
+   return(question_plot)
+    
   })
 }

@@ -14,7 +14,7 @@ library("markdown")
 intro_side_tab <- sidebarPanel(
   # Title of tab
   "Introduction",
-  fluidPage(theme = shinytheme("simplex"),
+  fluidPage(theme = shinytheme("simplex")
   )
 )
 main_panel_table <- mainPanel(
@@ -37,13 +37,13 @@ intro_tab <- tabPanel(
 
 # Create sidebar panel for widget
 sidebar_panel_widget <- sidebarPanel(
-  checkboxGroupInput(
-    inputId = "user_selection",
-    label = "Questions",
-    choices = c("Sample Question 1", "#2", "#3", "#4", "#5"),
+  
+  selectInput("select", label = h3("Select box"), 
+              choices = list("Choice 1" = 1, "Choice 2" = 2, "Choice 3" = 3), 
+              selected = 1),
     # True allows you to select multiple choices
     selected = "Sample Question 1" 
-  ),
+  )
   #sliderInput(inputId = "year_selection",
   #            label = h3("Slider"),
   #            min = min(climate_df$year),
@@ -51,7 +51,7 @@ sidebar_panel_widget <- sidebarPanel(
   #            sep = "",
   #            value = c(2010, 2020)
   #)
-)
+
 
 # Put a plot in the middle of the page
 main_panel_plot <- mainPanel(
@@ -66,18 +66,41 @@ main_panel_plot <- mainPanel(
 )
 
 # Plot Tab  - combine sidebar panel and main panel
-Question_tab <- tabPanel(
-  "Question Viz",
+Plot_tab <- tabPanel(
+  "Plot`s` tab",
   sidebarLayout(
     sidebar_panel_widget,
     main_panel_plot
   )
 )
+main_panel_questions <- mainPanel(
+  "Test",
+  plotlyOutput(outputId = "question_viz")
+)
+sidebar_panel_dropdown <- sidebarPanel(
+  
+  selectInput(inputId = "user_selection", label = h3("Select Question"), 
+              choices = c("ever_sexual_intercourse", "ever_cig_use", "current_cig_use", "attemped_suicide", "ever_alc_use", "ever_marijuana_use", "ever_cocaine_use"), 
+              selected = 1, 
+              multiple = F
+  # True allows you to select multiple choices
+   
+  )
+)
 
+Viz_tab <- tabPanel(
+  "Viz tab",
+  sidebarLayout(
+    sidebar_panel_dropdown,
+    main_panel_questions
+  )
+)
 
 ui <- navbarPage(
   # Home page title
   "YSSBR Survey Data",
   intro_tab,
-  Question_tab
+  Plot_tab,
+  Viz_tab
 )
+
