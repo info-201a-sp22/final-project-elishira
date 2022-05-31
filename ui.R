@@ -19,10 +19,10 @@ intro_side_tab <- sidebarPanel(
 )
 main_panel_table <- mainPanel(
   "Summary",
+  includeMarkdown("introduction.md"),
   h2("Something about the data"),
   
   h2("Table viz?"),
-  plotlyOutput(outputId = "race_suicide_viz"),
   
 )
 intro_tab <- tabPanel(
@@ -60,7 +60,8 @@ main_panel_plot <- mainPanel(
   h2("Spacer"),
   plotlyOutput(outputId = "teen_suicide_viz"),
   h2("Sample"),
-  plotlyOutput(outputId = "age_in_YRBSS_data")
+  plotlyOutput(outputId = "age_in_YRBSS_data"),
+  plotlyOutput(outputId = "race_suicide_viz")
   
 )
 
