@@ -1,22 +1,29 @@
 youth_df <- read.csv("YSSBR DATA Small NA.csv")
 library("reshape")
 library("dplyr")
+#Proportion of Weapon Carrying
+weapon_carrying <- youth_df %>% 
+  group_by(Year) %>%
+  summarise(weapon_carrying = (mean(q10...Weapon.Carrying. - 1, na.rm = TRUE)))
+#Proportion of Physical Fighting
+physical_fighting <- youth_df %>% 
+  group_by(Year) %>%
+  summarise(physical_fighting = (mean(q11..Physical.Fighting. - 1, na.rm = TRUE)))
 
-question_df <- merge(x = cigarette_ever_use_df, y = current_cigarette_use_df)
 #Proportion of kids attemped suicide question 16 
 attemped_suicide <- youth_df %>% 
   group_by(Year) %>% 
   summarise(attemped_suicide = (mean(q16..Attempted.suicide. - 1, na.rm = T)))
 
 
-#Proportion of kids ever used a cig question17
+#Proportion of kids ever used a cig question 17
 cigarette_ever_use <- youth_df %>% 
   group_by(Year) %>% 
   summarise(ever_cig_use = (mean(q17..Ever.cigarette.use. - 1, na.rm = T)))
 
 
 #Proportion of kids ever using a cig question19
-current_cigarette_use_df <- youth_df %>% 
+current_cigarette_use <- youth_df %>% 
   group_by(Year) %>%  
   summarise(current_cig_use = (mean(q19..Current.cigarette.use. - 1, na.rm = TRUE)))
 
@@ -49,7 +56,7 @@ multiple_sexual_partners <- youth_df %>%
 
 
 #Merge
-question_df <- merge(x = cigarette_ever_use_df, y = current_cigarette_use_df)
+question_df <- merge(x = cigarette_ever_use, y = current_cigarette_use)
 question_df <- merge(x = question_df, y = attemped_suicide)
 question_df <- merge(x = question_df, y = ever_alcohol_use)
 question_df <- merge(x = question_df, y = ever_marijuana_use)
