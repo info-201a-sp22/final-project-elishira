@@ -75,14 +75,21 @@ Plot_tab <- tabPanel(
 )
 main_panel_questions <- mainPanel(
   "Test",
+  h2("Proportion of "),
   plotlyOutput(outputId = "question_viz")
 )
 sidebar_panel_dropdown <- sidebarPanel(
   
   selectInput(inputId = "user_selection", label = h3("Select Question"), 
-              choices = c("ever_sexual_intercourse", "ever_cig_use", "current_cig_use", "attemped_suicide", "ever_alc_use", "ever_marijuana_use", "ever_cocaine_use"), 
-              selected = 1, 
-              multiple = F
+              choices = c("What proportion of students have had sexual Intercourse?" = "ever_sexual_intercourse",
+                          "What proportion of students have ever used a cigarette?" = "ever_cig_use", 
+                          "What proportion of students currently use cigarettes?" = "current_cig_use",
+                          "What proportion of students have attemped suicide?" = "attemped_suicide", 
+                          "What proportion of studnets have ever used alcohol?" = "ever_alc_use",
+                          "What proportion of students have ever used alcohol?" = "ever_marijuana_use",
+                          "What proportion of students have evver used alcohol?" = "ever_cocaine_use"), 
+              selected = "ever_sexual_intercourse", 
+              multiple = T
   # True allows you to select multiple choices
    
   )
