@@ -100,13 +100,28 @@ sidebar_city_panel_dropdown <- sidebarPanel(
   
   selectInput(
     inputId = "user_city_question_selection", 
-    label = h3("Select City in California"), 
-    choices = c("Orange County" = "Orange C",
-                "San Francisco" = "San Fran",
-                "Los Angeles" = "Los Ange",
-                "San Bernardino" = "San Bern"), 
+    label = h3("Select a City in the United States"), 
+    choices = c("Albuquerque, NM" = "Albuquer",
+                "Charlotte, NC" = "Charlott",
+                "Chicago, IL" = "Chicago",
+                "Dallas, TX" = "Dallas",
+                "Houston, TX" = "Houston",
+                "Los Angeles, CA" = "Los Ange",
+                "Milwaukee, WI" = "Milwauke",
+                "San Bernardino, CA" = "San Bern",
+                "San Francisco, CA" = "San Fran"), 
   multiple = TRUE
+  ),
+  
+  sliderInput(
+    inputId = "year_selection",
+    label = h3("Select Year Range"),
+    min = min(city_df$Year),
+    max = max(city_df$Year),
+    sep = "",
+    value = c(2010, 2019)
   )
+  # True allows you to select multiple choices
 )
 
 Viz_tab <- tabPanel(
@@ -124,7 +139,7 @@ main_panel_bar_panel <- mainPanel(
 )
 
 main_panel_city <- mainPanel(
-  h2("Select a city to find out more about cigarette trends among teens in California!"),
+  h2("Select and a City and a Year Range to find out More about Teen's Cigarette Usage in the US!"),
   plotlyOutput(outputId = "city_viz"),
 )
 
@@ -141,6 +156,7 @@ sidebar_barplot_panel_dropdown <- sidebarPanel(
                           ), 
               selected = "ever_sexual_intercourse", 
               multiple = F
+              # True allows you to select multiple choices
               
 )
 
@@ -153,7 +169,7 @@ Bar_tab <- tabPanel(
 )
 
 filter_state_question_tab <- tabPanel(
-  "Filter by City in California",
+  "Filter by City",
   
   sidebarLayout(
     sidebar_city_panel_dropdown,

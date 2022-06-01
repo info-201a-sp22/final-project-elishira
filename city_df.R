@@ -3,11 +3,16 @@ library("reshape")
 library(dplyr)
 library(ggplot2)
 
+city_df <- youth_df %>% 
+  select(Year, City, q17..Ever.cigarette.use.) %>% 
+  group_by(Year) %>% 
+  summarise(cig_use = (mean(q17..Ever.cigarette.use. - 1, na.rm = TRUE, NaN.rm = TRUE)), City = City)
 
-# 
-# city_df <- ggplot(data = city_df) +
-#   geom_line(mapping = aes(x = Year, y = cig_use, color = City))
-# city_df
+
+plot_city <- ggplot(data = city_df) +
+  geom_line(mapping = aes(x = Year, y = cig_use, color = City))
+
+plot_city
 # 
 # 
 # 

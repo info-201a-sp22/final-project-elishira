@@ -84,11 +84,13 @@ server <- function(input, output) {
     city_df <- youth_df %>% 
       select(Year, City, q17..Ever.cigarette.use.) %>% 
       group_by(Year) %>% 
-      summarise(cig_use = (mean(q17..Ever.cigarette.use. - 1, na.rm = TRUE)), City = City)
+      summarise(cig_use = (mean(q17..Ever.cigarette.use. - 1, na.rm = TRUE, NaN.rm = TRUE)), City = City)
+    
+    city_df <- na.omit(city_df)
     
     filtered_city_df <- city_df %>% 
-      filter(City %in% input$user_city_question_selection)
-    
+      filter(City %in% input$user_city_question_selection) %>% 
+      filter(Year >= input$year_selection[1] & Year <= input$year_selection[2])
     
     city_plot <- ggplot(data = filtered_city_df, aes(x = Year, y = cig_use, color = City)) +
       geom_line() +
