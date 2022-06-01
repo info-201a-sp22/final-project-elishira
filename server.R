@@ -69,16 +69,29 @@ server <- function(input, output) {
     
   })
   
-  output$state_and_question_viz <- renderPlotly({
-    filtered_df <- question_df %>% 
-      filter(Question %in% input$user_city_question_selection)
+  output$city_viz <- renderPlotly({
+    filtered_df <- youth_df %>% 
+      filter(City %in% input$user_city_question_selection)
     
-    questions_plot <- ggplot(data = youth_df) +
-      geom_line(mapping = aes(x = Year, y = Analysis.Weight, color = City)) +
-      xlab("Year") +
-      ylab("Proportion of Teens") +
-      ggtitle("Proportion of Teens by State")
+    city_plot <- ggplot(data = filtered_df) +
+      geom_line(mapping = aes(x = Year, y = Analysis.Weight, color = City))
     
-    return(questions_plot)
+    return(city_plot)
   })
+  
+  # output$state_and_question_viz <- renderPlotly({
+  #   filtered_df <- question_df %>% 
+  #     filter(Question %in% input$user_city_question_selection)
+  #   
+  #   # filter_city <- youth_df %>% 
+  #   #   filter()
+  #     
+  #   questions_plot <- ggplot(data = filtered_df) +
+  #     geom_line(mapping = aes(x = Year, y = Proportion)) +
+  #     xlab("Year") +
+  #     ylab("Proportion of Teens") +
+  #     ggtitle("Proportion of Teens by State")
+  #   
+  #   return(questions_plot)
+  # })
 }
