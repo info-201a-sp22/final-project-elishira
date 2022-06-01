@@ -1,6 +1,6 @@
 youth_df <- read.csv("YSSBR DATA Small NA.csv")
 library("reshape")
-library("dplyr")
+library(dplyr)
 library(ggplot2)
 #Proportion of Weapon Carrying
 weapon_carrying <- youth_df %>% 
@@ -28,8 +28,8 @@ current_cigarette_use <- youth_df %>%
   group_by(Year) %>%  
   summarise(current_cig_use = (mean(q19..Current.cigarette.use. - 1, na.rm = TRUE)))
 
-current_cig_use_plot <- ggplot(data = question_df) +
-  geom_line(mapping = aes(x = Year, y = question_df$ever_cig_use))
+current_cig_use_plot <- ggplot(data = youth_df) +
+  geom_line(mapping = aes(x = Year, y = youth_df$ever_cig_use))
 #ever_cig_use_plot
 #Proportion ever alc usage question26
 ever_alcohol_use <- youth_df %>% 
@@ -66,8 +66,8 @@ question_df <- merge(x = question_df, y = ever_sexual_intercourse)
 question_df <- merge(x = question_df, y = multiple_sexual_partners)
 
 question_df <- melt(question_df, id.vars= "Year")
-question_df <- rename(question_df, c("variable" = "Question"))
-question_df <- rename(question_df, c("value" = "Proportion"))
+question_df <- rename(question_df, c("Question" = "variable"))
+question_df <- rename(question_df, c("Proportion" = "value"))
 
 question_df_plot <- ggplot(data = question_df) +
   geom_line(mapping = aes(x = Year, y = Proportion, color = Question))

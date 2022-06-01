@@ -215,7 +215,7 @@ conclusion_tab <- tabPanel(
   "Conclusion Tab"
 )
 
-my_theme %>% bs_add_rules(sass::sass_file("my_style.css"))
+# my_theme %>% bs_add_rules(sass::sass_file("my_style.css"))
 
 
 ui <- navbarPage(
