@@ -73,7 +73,7 @@ server <- function(input, output) {
     filtered_city_df <- youth_df %>% 
       filter(City %in% input$user_city_question_selection)
     
-    # y_axis <- input$user_question_selection
+    y_axis <- input$user_question_selection
     
     city_plot <- ggplot(data = filtered_city_df) +
       geom_line(mapping = aes(x = Year, y = y_axis, color = City))

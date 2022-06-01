@@ -30,7 +30,7 @@ current_cigarette_use <- youth_df %>%
 
 current_cig_use_plot <- ggplot(data = question_df) +
   geom_line(mapping = aes(x = Year, y = question_df$ever_cig_use))
-ever_cig_use_plot
+#ever_cig_use_plot
 #Proportion ever alc usage question26
 ever_alcohol_use <- youth_df %>% 
   group_by(Year) %>%  
@@ -51,7 +51,7 @@ ever_sexual_intercourse <- youth_df %>%
   summarise(ever_sexual_intercourse = (mean(q34..Ever.sexual.intercourse. - 1, na.rm = TRUE)))
 
 #Proportion multiple sexual partners, ok 
-multiple_exual_partners <- youth_df %>% 
+multiple_sexual_partners <- youth_df %>% 
   group_by(Year) %>%
   summarise(ever_sexual_intercourse = (mean(q34..Ever.sexual.intercourse. - 1, na.rm = TRUE)))
 
@@ -66,8 +66,8 @@ question_df <- merge(x = question_df, y = ever_sexual_intercourse)
 question_df <- merge(x = question_df, y = multiple_sexual_partners)
 
 question_df <- melt(question_df, id.vars= "Year")
-question_df <- rename(question_df, c("Question" = "variable"))
-question_df <- rename(question_df, c("Proportion" = "value"))
+question_df <- rename(question_df, c("variable" = "Question"))
+question_df <- rename(question_df, c("value" = "Proportion"))
 
 question_df_plot <- ggplot(data = question_df) +
   geom_line(mapping = aes(x = Year, y = Proportion, color = Question))
