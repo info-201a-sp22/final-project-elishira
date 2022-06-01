@@ -56,7 +56,17 @@ server <- function(input, output) {
       ggtitle("Proportion of Teens attempting Suicide by Race")
     return(proportion_race_suicide_viz)
   })
-  
+  output$age_bar_plot <- renderPlotly({
+    filtered_age_df <- age_df %>% 
+      filter(Question %in% input$user_bar_plot_selection)
+    
+    ggplot(data = filtered_age_df, aes(x = age..1..10.years..7.16..years.old. + 10, y = Proportion * 100)) +
+      geom_bar(color = "blue", fill = "blue", stat = "identity") +
+      ggtitle(input$user_bar_plot_selection) +
+      ylab("Percent of survery base") +
+      xlab("Age of Students") 
+    
+  })
   output$question_viz <- renderPlotly({
     filtered_df <- question_df %>% 
       filter(Question %in% input$user_selection)
