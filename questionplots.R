@@ -16,7 +16,6 @@ attemped_suicide <- youth_df %>%
   group_by(Year) %>% 
   summarise(attemped_suicide = (mean(q16..Attempted.suicide. - 1, na.rm = T)))
 
-
 #Proportion of kids ever used a cig question 17
 cigarette_ever_use <- youth_df %>% 
   group_by(Year) %>% 
