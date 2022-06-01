@@ -125,12 +125,22 @@ sidebar_barplot_panel_dropdown <- sidebarPanel(
               # True allows you to select multiple choices
               
   )
+
 Bar_tab <- tabPanel(
   "Bar Plot tab",
   sidebarLayout(
     sidebar_barplot_panel_dropdown,
     main_panel_bar_panel
   )
+)
+
+filter_state_question_tab <- tabPanel(
+  "Filter by State and Question Tab",
+  plotlyOutput(outputId = "state_and_question_viz")
+)
+
+conclusion_tab <- tabPanel(
+  "Conclusion Tab"
 )
 
 
@@ -141,6 +151,8 @@ ui <- navbarPage(
   intro_tab,
   Plot_tab,
   Viz_tab,
-  Bar_tab
+  Bar_tab,
+  filter_state_question_tab,
+  conclusion_tab
 )
 

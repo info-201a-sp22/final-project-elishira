@@ -79,4 +79,16 @@ server <- function(input, output) {
       ylab("Percent of survey base") +
       xlab("Age of Students")
   })
+  
+  output$state_and_question_viz <- renderPlotly({
+    
+    questions_plot <- ggplot(data = youth_df) +
+      geom_line(mapping = aes(x = Year, y = Analysis.Weight, color = City)) +
+      xlab("Year") +
+      ylab("Proportion of Teens") +
+      ggtitle("Proportion of Teens by State")
+    
+    return(questions_plot)
+  })
+  
 }
