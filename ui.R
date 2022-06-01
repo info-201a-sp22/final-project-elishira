@@ -109,6 +109,11 @@ main_panel_bar_panel <- mainPanel(
   plotlyOutput(outputId = "age_bar_plot")
 )
 
+main_panel_city <- mainPanel(
+  "City Stuff",
+  plotlyOutput(outputId = "state_and_question_viz"),
+)
+
 sidebar_barplot_panel_dropdown <- sidebarPanel(
   
   selectInput(inputId = "user_bar_plot_selection", label = h3("Select Question"), 
@@ -124,7 +129,42 @@ sidebar_barplot_panel_dropdown <- sidebarPanel(
               multiple = F
               # True allows you to select multiple choices
               
-  )
+)
+
+sidebar_city_panel_dropdown <- sidebarPanel(
+  
+  selectInput(inputId = "user_city_question_selection", label = h3("Select Question"), 
+              choices = c("What proportion of students have had sexual Intercourse?" = "ever_sexual_intercourse",
+                          "What proportion of students have ever used a cigarette?" = "ever_cig_use", 
+                          "What proportion of students currently use cigarettes?" = "current_cig_use",
+                          "What proportion of students have attemped suicide?" = "attemped_suicide", 
+                          "What proportion of students have ever used alcohol?" = "ever_alc_use",
+                          "What proportion of students have ever carried a weapon?" = "weapon_carrying", 
+                          "What proportion of students have ever been in a fight?" = "physical_fighting")
+  ), 
+  selected = "ever_sexual_intercourse", 
+  multiple = T
+  # True allows you to select multiple choices
+  
+)
+# 
+# sidebar_barplot_panel_dropdown <- sidebarPanel(
+# 
+#   selectInput(
+#     inputId = "city_selection",
+#     label = "Select City in California",
+#     choices = c("Orange County" = "Orange C",
+#                 "San Diego" = "San Dieg,",
+#                 "San Francisco" = "San Fran",
+#                 "Los Angeles" = "Los Ange",
+#                 "San Bernardino" = "San Bern",)
+#   ),
+# 
+#   selected = "ever_sexual_intercourse",
+#   multiple = F
+#   # True allows you to select multiple choices
+# 
+# )
 
 Bar_tab <- tabPanel(
   "Bar Plot tab",
@@ -136,7 +176,11 @@ Bar_tab <- tabPanel(
 
 filter_state_question_tab <- tabPanel(
   "Filter by State and Question Tab",
-  plotlyOutput(outputId = "state_and_question_viz")
+  
+  sidebarLayout(
+    sidebar_city_panel_dropdown,
+    main_panel_city
+  )
 )
 
 conclusion_tab <- tabPanel(
