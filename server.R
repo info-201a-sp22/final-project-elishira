@@ -70,11 +70,13 @@ server <- function(input, output) {
   })
   
   output$city_viz <- renderPlotly({
-    filtered_df <- youth_df %>% 
+    filtered_city_df <- youth_df %>% 
       filter(City %in% input$user_city_question_selection)
     
-    city_plot <- ggplot(data = filtered_df) +
-      geom_line(mapping = aes(x = Year, y = Analysis.Weight, color = City))
+    # y_axis <- input$user_question_selection
+    
+    city_plot <- ggplot(data = filtered_city_df) +
+      geom_line(mapping = aes(x = Year, y = y_axis, color = City))
     
     return(city_plot)
   })

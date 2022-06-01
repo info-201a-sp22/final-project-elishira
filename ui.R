@@ -107,7 +107,18 @@ sidebar_city_panel_dropdown <- sidebarPanel(
                 "Los Angeles" = "Los Ange",
                 "San Bernardino" = "San Bern"), 
   multiple = TRUE
-  )
+  ),
+  
+  selectInput(inputId = "user_question_selection", label = h3("Select Question"), 
+              choices = c("What proportion of students have had sexual Intercourse?" = "ever_sexual_intercourse",
+                          "What proportion of students have ever used a cigarette?" = "ever_cig_use", 
+                          "What proportion of students currently use cigarettes?" = "current_cig_use",
+                          "What proportion of students have attemped suicide?" = "attemped_suicide", 
+                          "What proportion of students have ever used alcohol?" = "ever_alc_use",
+                          "What proportion of students have ever carried a weapon?" = "weapon_carrying", 
+                          "What proportion of students have ever been in a fight?" = "physical_fighting")
+  ), 
+  multiple = F
   # True allows you to select multiple choices
 )
 
@@ -146,7 +157,23 @@ sidebar_barplot_panel_dropdown <- sidebarPanel(
               # True allows you to select multiple choices
               
 )
-
+# 
+# city_tab_question_dropdown <- sidebarPanel(
+#   
+#   selectInput(inputId = "user_question_selection", label = h3("Select Question"), 
+#               choices = c("What proportion of students have had sexual Intercourse?" = "ever_sexual_intercourse",
+#                           "What proportion of students have ever used a cigarette?" = "ever_cig_use", 
+#                           "What proportion of students currently use cigarettes?" = "current_cig_use",
+#                           "What proportion of students have attemped suicide?" = "attemped_suicide", 
+#                           "What proportion of students have ever used alcohol?" = "ever_alc_use",
+#                           "What proportion of students have ever carried a weapon?" = "weapon_carrying", 
+#                           "What proportion of students have ever been in a fight?" = "physical_fighting")
+#   ), 
+#   selected = "ever_sexual_intercourse", 
+#   multiple = F
+#   # True allows you to select multiple choices
+#   
+# )
 
 # 
 # sidebar_barplot_panel_dropdown <- sidebarPanel(
