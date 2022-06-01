@@ -81,29 +81,22 @@ server <- function(input, output) {
   
   output$city_viz <- renderPlotly({
     
+    city_df <- youth_df %>% 
+      select(Year, City, q17..Ever.cigarette.use.) %>% 
+      group_by(Year) %>% 
+      summarise(cig_use = (mean(q17..Ever.cigarette.use. - 1, na.rm = TRUE)), City = City)
+    
     filtered_city_df <- city_df %>% 
       filter(City %in% input$user_city_question_selection)
     
     
-    city_plot <- ggplot(data = filtered_city_df) +
-      geom_line(mapping = aes(x = Year, y = cig_use, color = City))
-    
+    city_plot <- ggplot(data = filtered_city_df, aes(x = Year, y = cig_use, color = City)) +
+      geom_line() +
+      xlab("Year") +
+      ylab("Proporation of teens who have ever used a cigarette") +
+      ggtitle("Proporation of Teens who have Ever Used a Cigarette over the Years in California")
     return(city_plot)
+    
   })
   
-  # output$state_and_question_viz <- renderPlotly({
-  #   filtered_df <- question_df %>% 
-  #     filter(Question %in% input$user_city_question_selection)
-  #   
-  #   # filter_city <- youth_df %>% 
-  #   #   filter()
-  #     
-  #   questions_plot <- ggplot(data = filtered_df) +
-  #     geom_line(mapping = aes(x = Year, y = Proportion)) +
-  #     xlab("Year") +
-  #     ylab("Proportion of Teens") +
-  #     ggtitle("Proportion of Teens by State")
-  #   
-  #   return(questions_plot)
-  # })
 }
