@@ -28,7 +28,7 @@ intro_tab <- tabPanel(
 )
 
 main_panel_questions <- mainPanel(
-  h2("Proportion Teens Who Have..."),
+  h2("Proportion of Teens Who Have..."),
   plotlyOutput(outputId = "question_viz")
 )
 
