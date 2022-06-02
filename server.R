@@ -217,7 +217,7 @@ server <- function(input, output) {
       group_by(Year) %>% 
       summarise(cig_use = (mean(q17..Ever.cigarette.use. - 1, na.rm = TRUE, NaN.rm = TRUE)), City = City)
     
-    # city_df <- na.omit(city_df)
+    city_df <- na.omit(city_df)
     
     filtered_city_df <- city_df %>% 
       filter(City %in% input$user_city_question_selection) %>% 

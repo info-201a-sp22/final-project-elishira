@@ -15,14 +15,10 @@ intro_side_tab <- sidebarPanel(
   )
 )
 main_panel_table <- mainPanel(
-<<<<<<< HEAD
+#<<<<<<< HEAD
   "Summary",
   includeMarkdown("introduction.md")
-  
-=======
-  includeMarkdown("introduction.md"),
-  h2("Table viz?"), 
->>>>>>> a59ea23e927e294a8e52d68ad7b16b20168f26c5
+#>>>>>>> a59ea23e927e294a8e52d68ad7b16b20168f26c5
 )
 intro_tab <- tabPanel(
   "Intro Tab",
@@ -168,7 +164,7 @@ Bar_tab <- tabPanel(
 )
 
 filter_state_question_tab <- tabPanel(
-  "Filter by City",
+  "Filter Cigarette Usage by City",
   
   sidebarLayout(
     sidebar_city_panel_dropdown,
@@ -177,7 +173,7 @@ filter_state_question_tab <- tabPanel(
 )
 
 conclusion_tab <- tabPanel(
-  "Conclusion Tab"
+  "Conclusion Tab",
   includeMarkdown("conclusion.md"),
 )
 
