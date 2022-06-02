@@ -4,6 +4,8 @@ library(dplyr)
 library("shiny")
 library("reshape")
 library(ggplot2)
+library("thematic")
+thematic_shiny(font = "auto")
 
 server <- function(input, output) {
 
