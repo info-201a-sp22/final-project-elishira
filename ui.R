@@ -18,12 +18,8 @@ intro_side_tab <- sidebarPanel(
   )
 )
 main_panel_table <- mainPanel(
-  "Summary",
   includeMarkdown("introduction.md"),
-  h2("Something about the data"),
-  
-  h2("Table viz?"),
-  
+  h2("Table viz?"), 
 )
 intro_tab <- tabPanel(
   "Intro Tab",
@@ -179,6 +175,7 @@ filter_state_question_tab <- tabPanel(
 
 conclusion_tab <- tabPanel(
   "Conclusion Tab"
+  includeMarkdown("conclusion.md"),
 )
 
 # my_theme %>% bs_add_rules(sass::sass_file("my_style.css"))
