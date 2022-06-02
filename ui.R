@@ -6,9 +6,9 @@ library("bslib")
 library("shinythemes")
 library("markdown")
 
-my_theme <- bs_theme(bg = "#FA8072",
-                     fg = "#FFEBCD",
-                     primary = "white",
+my_theme <- bs_theme(bg = "#FFEBCD",
+                     fg = "#FA8072",
+                     primary = "#DB7093",
                      base_font = font_google("Patrick Hand", local = TRUE))
 
 # Home page tab
