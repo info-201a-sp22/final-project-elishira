@@ -63,7 +63,7 @@ sidebar_city_panel_dropdown <- sidebarPanel(
                 "San Bernardino, CA" = "San Bern",
                 "San Francisco, CA" = "San Fran"), 
     selected = "Charlott",
-    multiple = FALSE
+    multiple = TRUE
   ),
   
   sliderInput(
@@ -104,7 +104,7 @@ sidebar_barplot_panel_dropdown <- sidebarPanel(
                           "What proportion of students currently use cigarettes?" = "current_cig_use",
                           "What proportion of students have attempted suicide?" = "attemped_suicide", 
                           "What proportion of students have ever used alcohol?" = "ever_alc_use",
-                          "What proportion of students have ever carried a weapon?" = "weapon_carrying", 
+                          #"What proportion of students have ever carried a weapon?" = "weapon_carrying", 
                           "What proportion of students have ever been in a fight?" = "physical_fighting")
                           ), 
               selected = "ever_sexual_intercourse", 
