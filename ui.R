@@ -23,47 +23,7 @@ intro_tab <- tabPanel(
     intro_side_tab
   )
 )
-# We want our next tab to have a sidebar layout
-# So we're going to create a sidebarPanel() and a mainPanel() and then add them together
 
-# Create sidebar panel for widget
-sidebar_panel_widget <- sidebarPanel(
-  
-  selectInput("select", label = h3("Select box"), 
-              choices = list("Choice 1" = 1, "Choice 2" = 2, "Choice 3" = 3), 
-              selected = 1),
-    # True allows you to select multiple choices
-    selected = "Sample Question 1" 
-  )
-  #sliderInput(inputId = "year_selection",
-  #            label = h3("Slider"),
-  #            min = min(climate_df$year),
-  #            max = max(climate_df$year),
-  #            sep = "",
-  #            value = c(2010, 2020)
-  #)
-
-
-# Put a plot in the middle of the page
-main_panel_plot <- mainPanel(
-  #  plotOutput(outputId = "climate_plot")
-  # Make plot interactive
-  h2("Spacer"),
-  plotlyOutput(outputId = "teen_suicide_viz"),
-  h2("Sample"),
-  plotlyOutput(outputId = "age_in_YRBSS_data"),
-  plotlyOutput(outputId = "race_suicide_viz")
-  
-)
-
-# Plot Tab  - combine sidebar panel and main panel
-Plot_tab <- tabPanel(
-  "Plot`s` tab",
-  sidebarLayout(
-    sidebar_panel_widget,
-    main_panel_plot
-  )
-)
 main_panel_questions <- mainPanel(
   h2("Proportion Teens Who Have..."),
   plotlyOutput(outputId = "question_viz")
@@ -115,7 +75,7 @@ sidebar_city_panel_dropdown <- sidebarPanel(
 )
 
 Viz_tab <- tabPanel(
-  "Visualization based on YSSBR Questions",
+  "Filter Teen Activity by Question",
   sidebarLayout(
     sidebar_panel_dropdown,
     main_panel_questions
@@ -150,7 +110,7 @@ sidebar_barplot_panel_dropdown <- sidebarPanel(
 )
 
 Bar_tab <- tabPanel(
-  "YSSBR Question Coressponding to Age",
+  "Filter Teen Activity Corresponding to Age",
   sidebarLayout(
     sidebar_barplot_panel_dropdown,
     main_panel_bar_panel
@@ -158,7 +118,7 @@ Bar_tab <- tabPanel(
 )
 
 filter_state_question_tab <- tabPanel(
-  "Filter Cigarette Usage by City",
+  "Filter Teen Cigarette Usage by City",
   
   sidebarLayout(
     sidebar_city_panel_dropdown,
