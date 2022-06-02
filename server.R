@@ -203,7 +203,7 @@ server <- function(input, output) {
                                                    y = 100 - Proportion * 100, 
                                                    color = Question)) + 
       geom_line() +
-      geom_point()
+      ylab("Percent of Survey Base")
    return(question_plot)
     
   })
@@ -227,7 +227,7 @@ server <- function(input, output) {
       geom_line() +
       geom_point() +
       xlab("Year") +
-      ylab("Proportion of teens who have ever used a cigarette") +
+      ylab("Percent of Survey Base") +
       ggtitle("Proportion of Teens Who Have Ever Used a Cigarette Over the Years")
     return(city_plot)
     
