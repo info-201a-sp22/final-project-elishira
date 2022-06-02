@@ -7,14 +7,14 @@ library("shinythemes")
 library("markdown")
 
 my_theme <- bs_theme(bg = "#FA8072",
-                     fg = "white",
-                     primary = "#FFEBCD")
+                     fg = "#FFEBCD",
+                     primary = "white",
+                     base_font = font_google("Patrick Hand", local = TRUE))
 
 # Home page tab
 intro_side_tab <- sidebarPanel(
   # Title of tab
   "YSSBR DATA"
-  #fluidPage(theme = shinytheme("simplex"))
 )
 main_panel_table <- mainPanel(
   includeMarkdown("introduction.md")
