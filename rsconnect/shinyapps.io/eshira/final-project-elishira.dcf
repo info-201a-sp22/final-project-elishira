@@ -5,9 +5,9 @@ account: eshira
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 6415257
-bundleId: 5969732
+bundleId: 5969779
 url: https://eshira.shinyapps.io/final-project-elishira/
-when: 1654130283.34702
-lastSyncTime: 1654130283.34702
+when: 1654132067.34237
+lastSyncTime: 1654132067.34237
 asMultiple: FALSE
 asStatic: FALSE
