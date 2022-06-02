@@ -11,6 +11,9 @@ J.R. Lim, jrlim@uw.edu
 
 Spring 2022
 
+!["high school students"](https://constructionexec.com/assets/site_18/images/article/110619032504.jpg?width=1280)
+
+
 ### Abstract
 
 Our main question is "how has the behavior and overall life of the average American teenager changed over time?" To address this question, we will use the data provided by the Youth Risk Behavior Surveillance System (YRBSS). This question is important because it can be used to discover the various trends in the modern-day teenager. The trends that are found can be addressed and and used to improve the overall life of the average American teen.

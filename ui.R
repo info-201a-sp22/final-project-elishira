@@ -7,9 +7,6 @@ library("shinythemes")
 library("markdown")
 
 
-
-
-
 # Home page tab
 intro_side_tab <- sidebarPanel(
   # Title of tab
@@ -19,10 +16,7 @@ intro_side_tab <- sidebarPanel(
 )
 main_panel_table <- mainPanel(
   "Summary",
-  includeMarkdown("introduction.md"),
-  h2("Something about the data"),
-  
-  h2("Table viz?"),
+  includeMarkdown("introduction.md")
   
 )
 intro_tab <- tabPanel(

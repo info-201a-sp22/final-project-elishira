@@ -60,8 +60,4 @@ age_df <- rename(age_df, c("Question" = "variable"))
 age_df <- rename(age_df, c("Proportion" = "value"))
 
 
-
-
-
-
   
