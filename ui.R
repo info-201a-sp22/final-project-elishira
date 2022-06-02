@@ -64,7 +64,7 @@ sidebar_city_panel_dropdown <- sidebarPanel(
                 "San Bernardino, CA" = "San Bern",
                 "San Francisco, CA" = "San Fran"), 
     selected = "Charlott",
-    multiple = TRUE
+    multiple = FALSE
   ),
   
   sliderInput(

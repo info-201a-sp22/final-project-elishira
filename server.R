@@ -225,7 +225,7 @@ server <- function(input, output) {
       filter(City %in% input$user_city_question_selection) %>% 
       filter(Year >= input$year_selection[1] & Year <= input$year_selection[2])
     
-    city_plot <- ggplot(data = filtered_city_df, aes(x = Year, y = 100 - cig_use * 100, color = City)) +
+    city_plot <- ggplot(data = filtered_city_df, aes(x = Year, y = 100 - cig_use * 100)) +
       geom_line() +
       xlab("Year") +
       ylab("Percent of Survey Base") +
