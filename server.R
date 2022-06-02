@@ -2,6 +2,9 @@ youth_df <- read.csv("YSSBR DATA Small NA.csv")
 library(tidyverse)
 library(dplyr)
 library("shiny")
+library("reshape")
+library(ggplot2)
+
 server <- function(input, output) {
 
   output$age_in_YRBSS_data <- renderPlotly({
@@ -39,6 +42,7 @@ server <- function(input, output) {
     teen_suicide_plot
     return(teen_suicide_plot)
   })
+  
   output$race_suicide_viz <- renderPlotly({
     result_NA <- youth_df %>% 
       group_by(race4..4.level.race.variable.) %>% 
@@ -56,7 +60,66 @@ server <- function(input, output) {
       ggtitle("Proportion of Teens attempting Suicide by Race")
     return(proportion_race_suicide_viz)
   })
+  
   output$age_bar_plot <- renderPlotly({
+    
+    #Age of weapon carrying
+    Age.When.The.Student.Started.Carrying.A.Weapon <- youth_df %>% 
+      group_by(age..1..10.years..7.16..years.old.) %>%
+      summarise(weapon_carrying = (mean(q10...Weapon.Carrying. - 1, na.rm = TRUE)))
+    #Age of Physical Fighting
+    Age.When.The.Student.Fought <- youth_df %>% 
+      group_by(age..1..10.years..7.16..years.old.) %>%
+      summarise(physical_fighting = (mean(q11..Physical.Fighting. - 1, na.rm = TRUE)))
+    
+    #Age of kids attemped suicide question 16 
+    Age.When.Student.Attemped.Suicide <- youth_df %>% 
+      group_by(age..1..10.years..7.16..years.old.) %>% 
+      summarise(attemped_suicide = (mean(q16..Attempted.suicide. - 1, na.rm = T)))
+    
+    
+    #Age of kids ever used a cig question 17
+    Age.Of.First.Cigarette.Use <- youth_df %>% 
+      group_by(age..1..10.years..7.16..years.old.) %>% 
+      summarise(ever_cig_use = (mean(q17..Ever.cigarette.use. - 1, na.rm = T)))
+    
+    
+    #Age of kids ever using a cig question19
+    Age.Of.Constant.Cigarette.Use <- youth_df %>% 
+      group_by(age..1..10.years..7.16..years.old.) %>%  
+      summarise(current_cig_use = (mean(q19..Current.cigarette.use. - 1, na.rm = TRUE)))
+    
+    #Age of ever alc usage question26
+    Age.Of.First.Sip.Of.Alchol <- youth_df %>% 
+      group_by(age..1..10.years..7.16..years.old.) %>%  
+      summarise(ever_alc_use = (mean(q26..Ever.alcohol.use. - 1, na.rm = TRUE)))
+    
+    
+    #Age of ever sexual intercourse question 34, ok 
+    Age.Of.First.Sexual.Intercourse <- youth_df %>% 
+      group_by(age..1..10.years..7.16..years.old.) %>%
+      summarise(ever_sexual_intercourse = (mean(q34..Ever.sexual.intercourse. - 1, na.rm = TRUE)))
+    
+    #Age multiple sexual partners, ok 
+    Age.Of.Multiple.Partners <- youth_df %>% 
+      group_by(age..1..10.years..7.16..years.old.) %>%
+      summarise(ever_sexual_intercourse = (mean(q34..Ever.sexual.intercourse. - 1, na.rm = TRUE)))
+    
+    
+    #Merge
+    age_df <- merge(x = Age.Of.First.Cigarette.Use, y = Age.Of.Constant.Cigarette.Use)
+    age_df <- merge(x = age_df, y = Age.When.Student.Attemped.Suicide)
+    age_df <- merge(x = age_df, y = Age.Of.First.Sip.Of.Alchol)
+    age_df <- merge(x = age_df, y = Age.When.The.Student.Fought)
+    age_df <- merge(x = age_df, y = Age.When.The.Student.Started.Carrying.A.Weapon)
+    age_df <- merge(x = age_df, y = Age.Of.First.Sexual.Intercourse)
+    age_df <- merge(x = age_df, y = Age.Of.Multiple.Partners)
+    
+    #Get the column names (age_ever_alcohol_use, etc.) into one column to be able to create a chart
+    age_df <- melt(age_df, id.vars= "age..1..10.years..7.16..years.old.")
+    age_df <- rename(age_df, c("Question" = "variable"))
+    age_df <- rename(age_df, c("Proportion" = "value"))
+    
     filtered_age_df <- age_df %>% 
       filter(Question %in% input$user_bar_plot_selection)
     
@@ -67,7 +130,73 @@ server <- function(input, output) {
       xlab("Age of Students") 
     
   })
+  
   output$question_viz <- renderPlotly({
+    weapon_carrying <- youth_df %>% 
+      group_by(Year) %>%
+      summarise(weapon_carrying = (mean(q10...Weapon.Carrying. - 1, na.rm = TRUE)))
+    #Proportion of Physical Fighting
+    physical_fighting <- youth_df %>% 
+      group_by(Year) %>%
+      summarise(physical_fighting = (mean(q11..Physical.Fighting. - 1, na.rm = TRUE)))
+    
+    #Proportion of kids attemped suicide question 16 
+    attemped_suicide <- youth_df %>% 
+      group_by(Year) %>% 
+      summarise(attemped_suicide = (mean(q16..Attempted.suicide. - 1, na.rm = T)))
+    
+    #Proportion of kids ever used a cig question 17
+    cigarette_ever_use <- youth_df %>% 
+      group_by(Year) %>% 
+      summarise(ever_cig_use = (mean(q17..Ever.cigarette.use. - 1, na.rm = T)))
+    
+    
+    #Proportion of kids ever using a cig question19
+    current_cigarette_use <- youth_df %>% 
+      group_by(Year) %>%  
+      summarise(current_cig_use = (mean(q19..Current.cigarette.use. - 1, na.rm = TRUE)))
+    
+    current_cig_use_plot <- ggplot(data = youth_df) +
+      geom_line(mapping = aes(x = Year, y = youth_df$ever_cig_use))
+    #ever_cig_use_plot
+    #Proportion ever alc usage question26
+    ever_alcohol_use <- youth_df %>% 
+      group_by(Year) %>%  
+      summarise(ever_alc_use = (mean(q26..Ever.alcohol.use. - 1, na.rm = TRUE)))
+    #Proportion ever marijuana usage question28, not great 
+    ever_marijuana_use <- youth_df %>% 
+      group_by(Year) %>% 
+      summarise(ever_marijuana_use = (mean(q28..Ever.marijuana.use. - 1, na.rm = TRUE)))
+    
+    #Proportion ever use cocaine question 31, not great 
+    ever_cocaine_use <- youth_df %>% 
+      group_by(Year) %>% 
+      summarise(ever_cocaine_use = (mean(q31..Ever.cocaine.use. - 1, na.rm = TRUE)))
+    
+    #Proportion ever sexual intercourse question 34, ok 
+    ever_sexual_intercourse <- youth_df %>% 
+      group_by(Year) %>%
+      summarise(ever_sexual_intercourse = (mean(q34..Ever.sexual.intercourse. - 1, na.rm = TRUE)))
+    
+    #Proportion multiple sexual partners, ok 
+    multiple_sexual_partners <- youth_df %>% 
+      group_by(Year) %>%
+      summarise(ever_sexual_intercourse = (mean(q34..Ever.sexual.intercourse. - 1, na.rm = TRUE)))
+    
+    
+    #Merge
+    question_df <- merge(x = cigarette_ever_use, y = current_cigarette_use)
+    question_df <- merge(x = question_df, y = attemped_suicide)
+    question_df <- merge(x = question_df, y = ever_alcohol_use)
+    question_df <- merge(x = question_df, y = ever_marijuana_use)
+    question_df <- merge(x = question_df, y = ever_cocaine_use)
+    question_df <- merge(x = question_df, y = ever_sexual_intercourse)
+    question_df <- merge(x = question_df, y = multiple_sexual_partners)
+    
+    question_df <- melt(question_df, id.vars= "Year")
+    question_df <- rename(question_df, c("Question" = "variable"))
+    question_df <- rename(question_df, c("Proportion" = "value"))
+    
     filtered_df <- question_df %>% 
       filter(Question %in% input$user_selection)
     
@@ -92,11 +221,11 @@ server <- function(input, output) {
       filter(City %in% input$user_city_question_selection) %>% 
       filter(Year >= input$year_selection[1] & Year <= input$year_selection[2])
     
-    city_plot <- ggplot(data = filtered_city_df, aes(x = Year, y = cig_use, color = City)) +
+    city_plot <- ggplot(data = filtered_city_df, aes(x = Year, y = cig_use)) +
       geom_line() +
       xlab("Year") +
       ylab("Proporation of teens who have ever used a cigarette") +
-      ggtitle("Proporation of Teens who have Ever Used a Cigarette over the Years in California")
+      ggtitle("Proporation of Teens Who Have Ever Used a Cigarette Over the Years")
     return(city_plot)
     
   })
