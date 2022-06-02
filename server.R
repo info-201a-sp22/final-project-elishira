@@ -199,10 +199,11 @@ server <- function(input, output) {
     filtered_df <- question_df %>% 
       filter(Question %in% input$user_selection)
     
-    question_plot <- ggplot(data = filtered_df) + 
-      geom_line(aes(x = Year, 
-                    y = Proportion, 
-                    color = Question))
+    question_plot <- ggplot(data = filtered_df, aes(x = Year, 
+                                                   y = 100 - Proportion * 100, 
+                                                   color = Question)) + 
+      geom_line() +
+      geom_point()
    return(question_plot)
     
   })
