@@ -32,13 +32,13 @@ main_panel_questions <- mainPanel(
 sidebar_panel_dropdown <- sidebarPanel(
   
   selectInput(inputId = "user_selection", label = h3("Select Question"), 
-              choices = c("What proportion of students have had sexual Intercourse?" = "ever_sexual_intercourse",
+              choices = c("What proportion of students have had sexual intercourse?" = "ever_sexual_intercourse",
                           "What proportion of students have ever used a cigarette?" = "ever_cig_use", 
                           "What proportion of students currently use cigarettes?" = "current_cig_use",
                           "What proportion of students have attemped suicide?" = "attemped_suicide", 
                           "What proportion of studnets have ever used alcohol?" = "ever_alc_use",
-                          "What proportion of students have ever used alcohol?" = "ever_marijuana_use",
-                          "What proportion of students have evver used alcohol?" = "ever_cocaine_use"), 
+                          "What proportion of students have ever used marijuana?" = "ever_marijuana_use",
+                          "What proportion of students have ever used cocaine?" = "ever_cocaine_use"), 
               selected = "ever_sexual_intercourse", 
               multiple = T
   # True allows you to select multiple choices
