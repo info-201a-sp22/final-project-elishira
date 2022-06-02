@@ -1,7 +1,8 @@
 # The Average American Teen Over the Years
 ## INFO 201 "Foundational Skills for Data Science" — Spring 2022
 
-Authors: 
+**Authors:**
+
 Ken Oh, kenoh17@uw.edu
 
 Elizabeth Shirakian, eshira@uw.edu
