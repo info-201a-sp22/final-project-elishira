@@ -38,7 +38,7 @@ sidebar_panel_dropdown <- sidebarPanel(
               choices = c("What proportion of students have had sexual intercourse?" = "ever_sexual_intercourse",
                           "What proportion of students have ever used a cigarette?" = "ever_cig_use", 
                           "What proportion of students currently use cigarettes?" = "current_cig_use",
-                          "What proportion of students have attemped suicide?" = "attemped_suicide", 
+                          "What proportion of students have attempted suicide?" = "attemped_suicide", 
                           "What proportion of studnets have ever used alcohol?" = "ever_alc_use",
                           "What proportion of students have ever used marijuana?" = "ever_marijuana_use",
                           "What proportion of students have ever used cocaine?" = "ever_cocaine_use"), 
@@ -80,6 +80,7 @@ sidebar_city_panel_dropdown <- sidebarPanel(
 Viz_tab <- tabPanel(
   "Filter Teen Activity by Question",
   sidebarLayout(
+    includeMarkdown("tab1.md"),
     sidebar_panel_dropdown,
     main_panel_questions
   )
@@ -91,17 +92,17 @@ main_panel_bar_panel <- mainPanel(
 )
 
 main_panel_city <- mainPanel(
-  h2("Select and a City and a Year Range to find out More about Teen's Cigarette Usage in the US!"),
+  h2("Select a city and a year range to find out more about teen's cigarette usage in the US!"),
   plotlyOutput(outputId = "city_viz"),
 )
 
 sidebar_barplot_panel_dropdown <- sidebarPanel(
   
   selectInput(inputId = "user_bar_plot_selection", label = h3("Select Question"), 
-              choices = c("What proportion of students have had sexual Intercourse?" = "ever_sexual_intercourse",
+              choices = c("What proportion of students have had sexual intercourse?" = "ever_sexual_intercourse",
                           "What proportion of students have ever used a cigarette?" = "ever_cig_use", 
                           "What proportion of students currently use cigarettes?" = "current_cig_use",
-                          "What proportion of students have attemped suicide?" = "attemped_suicide", 
+                          "What proportion of students have attempted suicide?" = "attemped_suicide", 
                           "What proportion of students have ever used alcohol?" = "ever_alc_use",
                           "What proportion of students have ever carried a weapon?" = "weapon_carrying", 
                           "What proportion of students have ever been in a fight?" = "physical_fighting")

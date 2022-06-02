@@ -57,7 +57,7 @@ server <- function(input, output) {
        2 = Black
        3 = Hispanic
        4 = All other Races") + 
-      ggtitle("Proportion of Teens attempting Suicide by Race")
+      ggtitle("Proportion of Teens Attempting Suicide by Race")
     return(proportion_race_suicide_viz)
   })
   
@@ -125,7 +125,7 @@ server <- function(input, output) {
     
     ggplot(data = filtered_age_df, aes(x = age..1..10.years..7.16..years.old. + 10, y = Proportion * 100)) +
       geom_bar(color = "blue", fill = "blue", stat = "identity") +
-      ylab("Percent of Survery Base") +
+      ylab("Percent of Survey Base") +
       xlab("Age of Students") 
     
   })
@@ -225,8 +225,8 @@ server <- function(input, output) {
     city_plot <- ggplot(data = filtered_city_df, aes(x = Year, y = cig_use)) +
       geom_line() +
       xlab("Year") +
-      ylab("Proporation of teens who have ever used a cigarette") +
-      ggtitle("Proporation of Teens Who Have Ever Used a Cigarette Over the Years")
+      ylab("Proportion of teens who have ever used a cigarette") +
+      ggtitle("Proportion of Teens Who Have Ever Used a Cigarette Over the Years")
     return(city_plot)
     
   })

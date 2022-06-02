@@ -1,0 +1,3 @@
+# Analysis
+
+In this chart, we take a look at the proportions of teens who do things such as smoked cigarettes, drank alcohol, smoked marijuana, snorted cocaine, attempted suicide, and had sex. How we calculated the proportion was by finding the mean of the answers. These questions were yes and no questions where yes is 1 and no is 2. For this analysis, we will be focusing mostly on alcohol usage ever, cigarette usage ever, and attempted suicide. As you can see, teens who have drank alcohol or attempted suicide are decreasing because the proportion gets higher, meaning over time there are more teens saying no to having done those things. This goes contrary to the common belief that teens these days are worse than they were in the past. 
