@@ -6,12 +6,15 @@ library("bslib")
 library("shinythemes")
 library("markdown")
 
+my_theme <- bs_theme(bg = "#FA8072",
+                     fg = "white",
+                     primary = "#FFEBCD")
 
 # Home page tab
 intro_side_tab <- sidebarPanel(
   # Title of tab
-  "YSSBR DATA",
-  fluidPage(theme = shinytheme("simplex"))
+  "YSSBR DATA"
+  #fluidPage(theme = shinytheme("simplex"))
 )
 main_panel_table <- mainPanel(
   includeMarkdown("introduction.md")
@@ -131,12 +134,10 @@ conclusion_tab <- tabPanel(
   includeMarkdown("conclusion.md"),
 )
 
-# my_theme %>% bs_add_rules(sass::sass_file("my_style.css"))
-
-
 ui <- navbarPage(
   # Home page title
   "YSSBR Survey Data",
+  theme = my_theme,
   intro_tab,
   Viz_tab,
   Bar_tab,
