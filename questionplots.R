@@ -65,8 +65,8 @@ question_df <- merge(x = question_df, y = ever_sexual_intercourse)
 question_df <- merge(x = question_df, y = multiple_sexual_partners)
 
 question_df <- melt(question_df, id.vars= "Year")
-question_df <- rename(question_df, c("Question" = "variable"))
-question_df <- rename(question_df, c("Proportion" = "value"))
+question_df <- rename(question_df, c("variable" = "Question"))
+question_df <- rename(question_df, c("value" = "Proportion"))
 
 question_df_plot <- ggplot(data = question_df) +
   geom_line(mapping = aes(x = Year, y = Proportion, color = Question))

@@ -56,8 +56,8 @@ age_df <- merge(x = age_df, y = Age.Of.Multiple.Partners)
 
 #Get the column names (age_ever_alcohol_use, etc.) into one column to be able to create a chart
 age_df <- melt(age_df, id.vars= "age..1..10.years..7.16..years.old.")
-age_df <- rename(age_df, c("Question" = "variable"))
-age_df <- rename(age_df, c("Proportion" = "value"))
+age_df <- rename(age_df, c("variable" = "Question"))
+age_df <- rename(age_df, c("value" = "Proportion"))
 
 
   

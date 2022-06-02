@@ -8,11 +8,6 @@ city_df <- youth_df %>%
   group_by(Year) %>% 
   summarise(cig_use = (mean(q17..Ever.cigarette.use. - 1, na.rm = TRUE, NaN.rm = TRUE)), City = City)
 
-
-plot_city <- ggplot(data = city_df) +
-  geom_line(mapping = aes(x = Year, y = cig_use, color = City))
-
-plot_city
 # 
 # 
 # 

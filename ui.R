@@ -10,21 +10,17 @@ library("markdown")
 # Home page tab
 intro_side_tab <- sidebarPanel(
   # Title of tab
-  "Introduction",
-  fluidPage(theme = shinytheme("simplex")
-  )
+  "YSSBR DATA",
+  fluidPage(theme = shinytheme("simplex"))
 )
 main_panel_table <- mainPanel(
-#<<<<<<< HEAD
-  "Summary",
   includeMarkdown("introduction.md")
-#>>>>>>> a59ea23e927e294a8e52d68ad7b16b20168f26c5
 )
 intro_tab <- tabPanel(
-  "Intro Tab",
+  "Introduction Tab",
   sidebarLayout(
-    intro_side_tab,
-    main_panel_table
+    main_panel_table,
+    intro_side_tab
   )
 )
 # We want our next tab to have a sidebar layout
@@ -69,8 +65,7 @@ Plot_tab <- tabPanel(
   )
 )
 main_panel_questions <- mainPanel(
-  "Test",
-  h2("Proportion of "),
+  h2("Proportion Teens Who Have..."),
   plotlyOutput(outputId = "question_viz")
 )
 
@@ -111,16 +106,16 @@ sidebar_city_panel_dropdown <- sidebarPanel(
   sliderInput(
     inputId = "year_selection",
     label = h3("Select Year Range"),
-    min = min(city_df$Year),
-    max = max(city_df$Year),
+    min = 1995,
+    max = 2019,
     sep = "",
-    value = c(min(city_df$Year), max(city_df$Year))
+    value = c(1995, 2019)
   )
   # True allows you to select multiple choices
 )
 
 Viz_tab <- tabPanel(
-  "Viz tab",
+  "Visualization based on YSSBR Questions",
   sidebarLayout(
     sidebar_panel_dropdown,
     main_panel_questions
@@ -128,7 +123,6 @@ Viz_tab <- tabPanel(
 )
 
 main_panel_bar_panel <- mainPanel(
-  "Test",
   h2("Select a question and find out more about the YSSBR survey data!"),
   plotlyOutput(outputId = "age_bar_plot")
 )
@@ -156,7 +150,7 @@ sidebar_barplot_panel_dropdown <- sidebarPanel(
 )
 
 Bar_tab <- tabPanel(
-  "Bar Plot tab",
+  "YSSBR Question Coressponding to Age",
   sidebarLayout(
     sidebar_barplot_panel_dropdown,
     main_panel_bar_panel
@@ -184,7 +178,6 @@ ui <- navbarPage(
   # Home page title
   "YSSBR Survey Data",
   intro_tab,
-  Plot_tab,
   Viz_tab,
   Bar_tab,
   filter_state_question_tab,

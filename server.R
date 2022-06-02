@@ -117,16 +117,15 @@ server <- function(input, output) {
     
     #Get the column names (age_ever_alcohol_use, etc.) into one column to be able to create a chart
     age_df <- melt(age_df, id.vars= "age..1..10.years..7.16..years.old.")
-    age_df <- rename(age_df, c("Question" = "variable"))
-    age_df <- rename(age_df, c("Proportion" = "value"))
+    age_df <- rename(age_df, c("variable" = "Question"))
+    age_df <- rename(age_df, c("value" = "Proportion"))
     
     filtered_age_df <- age_df %>% 
       filter(Question %in% input$user_bar_plot_selection)
     
     ggplot(data = filtered_age_df, aes(x = age..1..10.years..7.16..years.old. + 10, y = Proportion * 100)) +
       geom_bar(color = "blue", fill = "blue", stat = "identity") +
-      ggtitle(input$user_bar_plot_selection) +
-      ylab("Percent of survery base") +
+      ylab("Percent of Survery Base") +
       xlab("Age of Students") 
     
   })
@@ -194,8 +193,8 @@ server <- function(input, output) {
     question_df <- merge(x = question_df, y = multiple_sexual_partners)
     
     question_df <- melt(question_df, id.vars= "Year")
-    question_df <- rename(question_df, c("Question" = "variable"))
-    question_df <- rename(question_df, c("Proportion" = "value"))
+    question_df <- rename(question_df, c("variable" = "Question"))
+    question_df <- rename(question_df, c("value" = "Proportion"))
     
     filtered_df <- question_df %>% 
       filter(Question %in% input$user_selection)
@@ -215,7 +214,7 @@ server <- function(input, output) {
     city_df <- youth_df %>% 
       select(Year, City, q17..Ever.cigarette.use.) %>% 
       group_by(Year) %>% 
-      summarise(cig_use = (mean(q17..Ever.cigarette.use. - 1, na.rm = TRUE, NaN.rm = TRUE)), City = City)
+      summarise(cig_use = (mean(q17..Ever.cigarette.use. - 1, na.rm = TRUE)), City = City)
     
     city_df <- na.omit(city_df)
     
