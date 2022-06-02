@@ -20,7 +20,7 @@ server <- function(input, output) {
     
     # plot the ages against the count of students taking the survey
     ages_in_YSSBR <- ggplot(data = youth_df, aes(x =  Ages)) +
-      geom_bar(stat = "bin", color = "blue", fill = "blue", bins = 7) +
+      geom_bar(stat = "bin", color = "slateblue4", fill = "slateblue4", bins = 7) +
       ggtitle("Ages Represented in YRBSS Data") +
       ylab("Number of Survey-Takers") +
       xlab("Age of Survey-Taker") 
@@ -126,7 +126,7 @@ server <- function(input, output) {
       filter(Question %in% input$user_bar_plot_selection)
     
     ggplot(data = filtered_age_df, aes(x = age..1..10.years..7.16..years.old. + 10, y = 100 - Proportion * 100)) +
-      geom_bar(color = "blue", fill = "blue", stat = "identity") +
+      geom_bar(color = "slateblue4", fill = "slateblue4", stat = "identity") +
       ylab("Percent of Survey Base") +
       xlab("Age of Students") 
     

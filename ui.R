@@ -5,11 +5,12 @@ library("rsconnect")
 library("bslib")
 library("shinythemes")
 library("markdown")
+library("thematic")
 
 my_theme <- bs_theme(bg = "#FFEBCD",
-                     fg = "#FA8072",
+                     fg = "#17042E",
                      primary = "#DB7093",
-                     base_font = font_google("Patrick Hand", local = TRUE))
+                     base_font = font_google("Source Sans Pro", local = TRUE))
 
 # Home page tab
 intro_side_tab <- sidebarPanel(
