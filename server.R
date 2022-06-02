@@ -67,6 +67,7 @@ server <- function(input, output) {
     Age.When.The.Student.Started.Carrying.A.Weapon <- youth_df %>% 
       group_by(age..1..10.years..7.16..years.old.) %>%
       summarise(weapon_carrying = (mean(q10...Weapon.Carrying. - 1, na.rm = TRUE)))
+    
     #Age of Physical Fighting
     Age.When.The.Student.Fought <- youth_df %>% 
       group_by(age..1..10.years..7.16..years.old.) %>%
@@ -76,7 +77,6 @@ server <- function(input, output) {
     Age.When.Student.Attemped.Suicide <- youth_df %>% 
       group_by(age..1..10.years..7.16..years.old.) %>% 
       summarise(attemped_suicide = (mean(q16..Attempted.suicide. - 1, na.rm = T)))
-    
     
     #Age of kids ever used a cig question 17
     Age.Of.First.Cigarette.Use <- youth_df %>% 
@@ -123,7 +123,7 @@ server <- function(input, output) {
     filtered_age_df <- age_df %>% 
       filter(Question %in% input$user_bar_plot_selection)
     
-    ggplot(data = filtered_age_df, aes(x = age..1..10.years..7.16..years.old. + 10, y = Proportion * 100)) +
+    ggplot(data = filtered_age_df, aes(x = age..1..10.years..7.16..years.old. + 10, y = 100 - Proportion * 100)) +
       geom_bar(color = "blue", fill = "blue", stat = "identity") +
       ylab("Percent of Survey Base") +
       xlab("Age of Students") 
@@ -222,8 +222,9 @@ server <- function(input, output) {
       filter(City %in% input$user_city_question_selection) %>% 
       filter(Year >= input$year_selection[1] & Year <= input$year_selection[2])
     
-    city_plot <- ggplot(data = filtered_city_df, aes(x = Year, y = cig_use)) +
+    city_plot <- ggplot(data = filtered_city_df, aes(x = Year, y = 100 - cig_use * 100)) +
       geom_line() +
+      geom_point() +
       xlab("Year") +
       ylab("Proportion of teens who have ever used a cigarette") +
       ggtitle("Proportion of Teens Who Have Ever Used a Cigarette Over the Years")

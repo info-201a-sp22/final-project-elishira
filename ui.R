@@ -79,8 +79,8 @@ sidebar_city_panel_dropdown <- sidebarPanel(
 
 Viz_tab <- tabPanel(
   "Filter Teen Activity by Question",
+  includeMarkdown("tab1.md"),
   sidebarLayout(
-    includeMarkdown("tab1.md"),
     sidebar_panel_dropdown,
     main_panel_questions
   )
@@ -115,6 +115,7 @@ sidebar_barplot_panel_dropdown <- sidebarPanel(
 
 Bar_tab <- tabPanel(
   "Filter Teen Activity Corresponding to Age",
+  includeMarkdown("tab2.md"),
   sidebarLayout(
     sidebar_barplot_panel_dropdown,
     main_panel_bar_panel
@@ -123,7 +124,7 @@ Bar_tab <- tabPanel(
 
 filter_state_question_tab <- tabPanel(
   "Filter Teen Cigarette Usage by City",
-  
+  includeMarkdown("tab3.md"),
   sidebarLayout(
     sidebar_city_panel_dropdown,
     main_panel_city
